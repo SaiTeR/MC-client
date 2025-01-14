@@ -1,5 +1,5 @@
 @echo off
-chcp 65001 > nul
+cmd /u /c chcp 65001 > nul
 
 REM --- Настройки ---
 SET REPO_URL=https://github.com/SaiTeR/MC-client/archive/refs/heads/main.zip
