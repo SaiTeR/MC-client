@@ -1,31 +1,28 @@
 @echo off
-chcp 1251 > nul
 
-REM --- Настройки ---
 SET REPO_URL=https://github.com/SaiTeR/MC-client/archive/refs/heads/main.zip
 SET MINECRAFT_DIR=%APPDATA%\.minecraft
 
-REM --- Временная папка для скачивания ---
 SET TEMP_DIR=%TEMP%\minecraft_update
 mkdir "%TEMP_DIR%"
 
-echo Загружаем моды и конфиги с GitHub...
+echo  Downloading MODS and CONFIG form GitHub...
 curl -L -o "%TEMP_DIR%\update.zip" %REPO_URL%
 
-echo Удаляем старые моды и конфиги...
+echo Deleting old files
 rmdir /S /Q "%MINECRAFT_DIR%\mods"
 rmdir /S /Q "%MINECRAFT_DIR%\config"
 
-echo Распаковываем архив...
+echo Uzipping archive
 mkdir "%TEMP_DIR%\unzipped"
 powershell -Command "Expand-Archive -Path '%TEMP_DIR%\update.zip' -DestinationPath '%TEMP_DIR%\unzipped'"
 
-echo Копируем новые файлы...
+echo Copying MODS and CONFIG...
 xcopy /E /Y /I "%TEMP_DIR%\unzipped\MC-client-main\mods" "%MINECRAFT_DIR%\mods"
 xcopy /E /Y /I "%TEMP_DIR%\unzipped\MC-client-main\config" "%MINECRAFT_DIR%\config"
 
-echo Очистка временных файлов...
+echo Deleting temp files...
 rmdir /S /Q "%TEMP_DIR%"
 
-echo Обновление сборки завершено!
+echo Update complete!
 pause
