@@ -1,31 +1,30 @@
 @echo off
-cmd /u /c chcp 65001 > nul
 
-REM --- РќР°СЃС‚СЂРѕР№РєРё ---
+REM --- Настройки ---
 SET REPO_URL=https://github.com/SaiTeR/MC-client/archive/refs/heads/main.zip
 SET MINECRAFT_DIR=%APPDATA%\.minecraft
 
-REM --- Р’СЂРµРјРµРЅРЅР°СЏ РїР°РїРєР° РґР»СЏ СЃРєР°С‡РёРІР°РЅРёСЏ ---
+REM --- Временная папка для скачивания ---
 SET TEMP_DIR=%TEMP%\minecraft_update
 mkdir "%TEMP_DIR%"
 
-echo Р—Р°РіСЂСѓР¶Р°РµРј РјРѕРґС‹ Рё РєРѕРЅС„РёРіРё СЃ GitHub...
+echo Загружаем моды и конфиги с GitHub...
 curl -L -o "%TEMP_DIR%\update.zip" %REPO_URL%
 
-echo РЈРґР°Р»СЏРµРј СЃС‚Р°СЂС‹Рµ РјРѕРґС‹ Рё РєРѕРЅС„РёРіРё...
+echo Удаляем старые моды и конфиги...
 rmdir /S /Q "%MINECRAFT_DIR%\mods"
 rmdir /S /Q "%MINECRAFT_DIR%\config"
 
-echo Р Р°СЃРїР°РєРѕРІС‹РІР°РµРј Р°СЂС…РёРІ...
+echo Распаковываем архив...
 mkdir "%TEMP_DIR%\unzipped"
 powershell -Command "Expand-Archive -Path '%TEMP_DIR%\update.zip' -DestinationPath '%TEMP_DIR%\unzipped'"
 
-echo РљРѕРїРёСЂСѓРµРј РЅРѕРІС‹Рµ С„Р°Р№Р»С‹...
+echo Копируем новые файлы...
 xcopy /E /Y /I "%TEMP_DIR%\unzipped\MC-client-main\mods" "%MINECRAFT_DIR%\mods"
 xcopy /E /Y /I "%TEMP_DIR%\unzipped\MC-client-main\config" "%MINECRAFT_DIR%\config"
 
-echo РћС‡РёСЃС‚РєР° РІСЂРµРјРµРЅРЅС‹С… С„Р°Р№Р»РѕРІ...
+echo Очистка временных файлов...
 rmdir /S /Q "%TEMP_DIR%"
 
-echo РћР±РЅРѕРІР»РµРЅРёРµ СЃР±РѕСЂРєРё Р·Р°РІРµСЂС€РµРЅРѕ!
+echo Обновление сборки завершено!
 pause
