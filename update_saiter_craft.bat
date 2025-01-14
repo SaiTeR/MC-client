@@ -9,11 +9,11 @@ mkdir "%TEMP_DIR%"
 echo  Downloading MODS and CONFIG form GitHub...
 curl -L -o "%TEMP_DIR%\update.zip" %REPO_URL%
 
-echo Deleting old files
+echo Deleting old files...
 rmdir /S /Q "%MINECRAFT_DIR%\mods"
 rmdir /S /Q "%MINECRAFT_DIR%\config"
 
-echo Uzipping archive
+echo Uzipping archive...
 mkdir "%TEMP_DIR%\unzipped"
 powershell -Command "Expand-Archive -Path '%TEMP_DIR%\update.zip' -DestinationPath '%TEMP_DIR%\unzipped'"
 
