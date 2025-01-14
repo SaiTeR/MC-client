@@ -1,0 +1,9 @@
+
+["Config for NoOPPort mod"]
+	#Should /port work on coordinates?
+	"Teleport on coordinates" = true
+	#Should /port work on players?
+	"Teleport on players" = false
+	#Should /port work for teleporting other players?
+	"Teleport other players" = false
+
