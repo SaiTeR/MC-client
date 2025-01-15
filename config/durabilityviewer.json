@@ -46,7 +46,7 @@
   "durabilityviewer.config.effectduration": {
     "key": "durabilityviewer.config.effectduration",
     "toolTip": "durabilityviewer.config.tt.effectduration",
-    "value": true,
+    "value": false,
     "defaultValue": true
   },
   "durabilityviewer.config.corner": {
@@ -78,13 +78,13 @@
   "durabilityviewer.config.armorhotbar": {
     "key": "durabilityviewer.config.armorhotbar",
     "toolTip": "durabilityviewer.config.tt.armorhotbar",
-    "value": false,
+    "value": true,
     "defaultValue": false
   },
   "durabilityviewer.config.showdamagepercent": {
     "key": "durabilityviewer.config.showdamagepercent",
     "toolTip": "durabilityviewer.config.tt.showdamagepercent",
-    "value": 80,
+    "value": 100,
     "defaultValue": 80,
     "minValue": 0,
     "maxValue": 100
