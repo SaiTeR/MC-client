@@ -5,10 +5,10 @@
 	[hud_elements.mana]
 		#Horizontal position of the mana bar.
 		#Range: -32768 ~ 32767
-		mana_x = 6
+		mana_x = 14
 		#Vertical position of the mana bar.
 		#Range: -32768 ~ 32767
-		mana_y = 14
+		mana_y = 28
 		#Horizontal anchor of the mana bar.
 		#Allowed Values: LEFT, CENTER, RIGHT
 		mana_anchor_x = "RIGHT"
@@ -33,10 +33,10 @@
 	[hud_elements.xp]
 		#Horizontal position of the magic xp bar.
 		#Range: -32768 ~ 32767
-		xp_x = 6
+		xp_x = 9
 		#Vertical position of the magic xp bar.
 		#Range: -32768 ~ 32767
-		xp_y = 24
+		xp_y = 37
 		#Horizontal anchor of the magic xp bar.
 		#Allowed Values: LEFT, CENTER, RIGHT
 		xp_anchor_x = "RIGHT"
@@ -47,10 +47,10 @@
 	[hud_elements.spell_book]
 		#Horizontal position of the spell book hud.
 		#Range: -32768 ~ 32767
-		spell_book_x = -129
+		spell_book_x = -110
 		#Vertical position of the spell book hud.
 		#Range: -32768 ~ 32767
-		spell_book_y = 18
+		spell_book_y = 19
 		#Horizontal anchor of the spell book hud.
 		#Allowed Values: LEFT, CENTER, RIGHT
 		spell_book_anchor_x = "CENTER"
