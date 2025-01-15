@@ -1,12 +1,17 @@
 @echo off
 
+echo SaiterCraft updater v 1.33.7
+echo (c) Saiter Holdings Corp.
+echo -----------------------------
+
+
 SET REPO_URL=https://github.com/SaiTeR/MC-client/archive/refs/heads/main.zip
 SET MINECRAFT_DIR=%APPDATA%\.minecraft
 
 SET TEMP_DIR=%TEMP%\minecraft_update
 mkdir "%TEMP_DIR%"
 
-echo  Downloading MODS and CONFIG form GitHub...
+echo Downloading MODS and CONFIG form GitHub...
 curl -L -o "%TEMP_DIR%\update.zip" %REPO_URL%
 
 echo Deleting old files...
