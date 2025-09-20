@@ -36,18 +36,24 @@ echo.
 echo Скачивание файлов сборки, дождитесь завершения... ЕСЛИ ВАШ ИНТЕРНЕТ ГОВНО, ТО ЭТО БУДЕТ ДОЛГО...
 curl -L -C - -o "%TEMP_DIR%\update.zip" %REPO_URL%
 
-echo Удаление старых файлов сборки...
-rmdir /S /Q "%MINECRAFT_DIR%\mods"
-rmdir /S /Q "%MINECRAFT_DIR%\config"
+@REM echo Разрешаем удаление папок mods и config...
+@REM attrib -h -s -r "%MINECRAFT_DIR%\mods\*.*" /S /D 2>nul
+@REM attrib -h -s -r "%MINECRAFT_DIR%\config\*.*" /S /D 2>nul
+
+@REM echo Удаление старых файлов сборки...
+@REM #TODO Не удаляются старые моды
+@REM rmdir /S /Q "%MINECRAFT_DIR%\mods"
+@REM #TODO Конфиги аналогично модам почему-то не обновились (на ноуте Оришы)
+@REM rmdir /S /Q "%MINECRAFT_DIR%\config"
 
 echo Распаковка архива обновления...
 mkdir "%TEMP_DIR%\unzipped"
-powershell -Command "Expand-Archive -Path '%TEMP_DIR%\update.zip' -DestinationPath '%TEMP_DIR%\unzipped'"
+tar -xf "%TEMP_DIR%\update.zip" -C "%TEMP_DIR%\unzipped"
 
 echo Копирование MODS и CONFIG...
-xcopy /E /Y /I "%TEMP_DIR%\unzipped\MC-client-main\mods" "%MINECRAFT_DIR%\mods"
-xcopy /E /Y /I "%TEMP_DIR%\unzipped\MC-client-main\config" "%MINECRAFT_DIR%\config"
-xcopy /E /Y /I "%TEMP_DIR%\unzipped\MC-client-main\version" "%MINECRAFT_DIR%\version"
+robocopy "%TEMP_DIR%\unzipped\MC-client-main\mods" "%MINECRAFT_DIR%\mods" /MIR /R:2 /W:2
+robocopy "%TEMP_DIR%\unzipped\MC-client-main\config" "%MINECRAFT_DIR%\config" /MIR /R:2 /W:2
+copy /Y "%TEMP_DIR%\unzipped\MC-client-main\version" "%MINECRAFT_DIR%\version" >nul 2>&1
 
 echo Удаление временных файлов...
 rmdir /S /Q "%TEMP_DIR%"
